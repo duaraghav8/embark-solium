@@ -7,7 +7,7 @@
 
 
 function handler(Embark) {
-    Embark.events.on("file-changed", (fileType, path) => {
+    Embark.events.on("file-event", (fileType, path) => {
         if (fileType === "contract") {
             Embark.logger.info(`File changed: ${path}`);
         }
