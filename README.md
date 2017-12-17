@@ -24,7 +24,7 @@ If you'd like to know which version of Solium `embark-solium` is running, simply
 - [ ] Enable Solium's autofixing feature
 - [ ] Allow user to change location of Solium config files
 
-# Links
+## Links
 - Solium: [User Documentation](http://solium.readthedocs.io/en/latest/user-guide.html)
 - Solium: List of [core](http://solium.readthedocs.io/en/latest/user-guide.html#list-of-core-rules) & [security](https://www.npmjs.com/package/solium-plugin-security#list-of-rules) rules applied
 - Embark: [Plugin Documentation](http://embark.readthedocs.io/en/latest/plugins.html)
