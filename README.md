@@ -23,6 +23,7 @@ If you'd like to know which version of Solium `embark-solium` is running, simply
 ## Roadmap
 - [ ] Enable Solium's autofixing feature
 - [ ] Allow user to change location of Solium config files
+- [ ] Tests!
 
 ## Links
 - Solium: [User Documentation](http://solium.readthedocs.io/en/latest/user-guide.html)
