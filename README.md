@@ -1,5 +1,5 @@
 # embark-solium
-The official Solium Plugin for Embark Framework
+The official [Solium](https://github.com/duaraghav8/Solium) Plugin for the [Embark Framework](https://github.com/iurimatias/embark-framework)
 
 ## Install
 Make sure you have [embark](https://www.npmjs.com/package/embark) installed globally.
