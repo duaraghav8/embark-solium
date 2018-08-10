@@ -38,34 +38,34 @@ module.exports = (Embark, command, options) => {
 
     const tokens = tokenize(command);
 
-    // If command doesn't start with "solium", return the control back to embark (or next plugin in chain)
-    if (tokens[0] !== "solium") {
-        return false;
-    }
-
-    if (tokens.length === 1) {
-        return help();
-    }
-
-    /* eslint-disable indent */
-    switch(tokens[1]) {
-        case "--init":
-        case "-i":
-            try {
-                createConfigFiles();
-            } catch (e) {
-                return `Error while creating Solium config files in root dir: ${e.message}`;
+    return {
+        match: () => tokens[0] === "solium",
+        process: (callback) => {
+            if (tokens.length === 1) {
+                return callback(null, help());
             }
 
-            return `Created ${consts.SOLIUMRC_JSON} & ${consts.SOLIUMIGNORE} in root directory.`;
+            /* eslint-disable indent */
+            switch(tokens[1]) {
+                case "--init":
+                case "-i":
+                try {
+                    createConfigFiles();
+                } catch (e) {
+                    return callback(null, `Error while creating Solium config files in root dir: ${e.message}`);
+                }
 
-        case "--help":
-        case "-h":
-            return help();
+                return callback(null, `Created ${consts.SOLIUMRC_JSON} & ${consts.SOLIUMIGNORE} in root directory.`);
 
-        default:
-            return `Invalid option "${tokens[1]}".\n${help()}`;
-    }
-    /* eslint-enable indent */
+                case "--help":
+                case "-h":
+                    return callback(null, help());
+
+                default:
+                    return callback(null, `Invalid option "${tokens[1]}".\n${help()}`);
+          }
+          /* eslint-enable indent */
+        }
+    };
 
 };
