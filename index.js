@@ -79,7 +79,7 @@ function isIgnored(exactFilePath, soliumignore) {
  * - Send contract for linting
  * - Write lint output to console
  */
-function fileChangeHandler(Embark, fileType, filePath) {
+function fileChangeHandler(Embark, {fileType, path: filePath}) {
     if (!isASolidityContract(filePath, fileType)) {
         return;
     }
@@ -109,5 +109,5 @@ function fileChangeHandler(Embark, fileType, filePath) {
 
 module.exports = Embark => {
     Embark.events.on("file-event", fileChangeHandler.bind(null, Embark));
-    Embark.registerConsoleCommand(commandHandler.bind(null, Embark));
+    Embark.registerConsoleCommand(commandHandler);
 };

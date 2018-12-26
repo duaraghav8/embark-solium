@@ -12,7 +12,7 @@ module.exports = Object.freeze({
         NO_SUCH_FILE_OR_DIR: "ENOENT"
     },
 
-    MSG_PREFIX: "embark-solium:",
+    MSG_PREFIX: "",
     SOLIUMIGNORE: ".soliumignore",
     SOLIUMRC_JSON: ".soliumrc.json",
     ROOT_DIR: process.cwd()
