@@ -8,8 +8,10 @@
 
 const Solium = require("solium"),
     fs = require("fs"), path = require("path"),
+    commandHandlerV3 = require("./src/command-handler.v3"),
     commandHandler = require("./src/command-handler"),
-    Reporter = require("./src/reporter"), consts = require("./src/constants");
+    Reporter = require("./src/reporter"), 
+    consts = require("./src/constants");
 
 
 function isASolidityContract(filePath, fileType) {
@@ -108,6 +110,14 @@ function fileChangeHandler(Embark, {fileType, path: filePath}) {
 
 
 module.exports = Embark => {
-    Embark.events.on("file-event", fileChangeHandler.bind(null, Embark));
+    // support for legacy Embark versions
+    const isLegacy = !Embark.version; // Embark.version only exposed in Embark 4
+    Embark.events.on("file-event", (...args) => {
+        const params = isLegacy ? {fileType: args[0], path: args[1]} : args[0];
+        fileChangeHandler(Embark, params);
+    });
+    if(isLegacy) {
+        return Embark.registerConsoleCommand(commandHandlerV3.bind(null, Embark));
+    }
     Embark.registerConsoleCommand(commandHandler);
 };
